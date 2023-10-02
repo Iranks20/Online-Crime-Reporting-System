@@ -79,17 +79,15 @@ class UsersRegisterForm(forms.ModelForm):
         bhamashah = self.cleaned_data.get("bhamashah")
 
 
-        data = b(bhamashah)
-        print(data)
+        # data = b(bhamashah)
+        # print(data)
 
-
-
-        if data is not None and 'AADHAR_ID' in data:
-            if aadhaar != data['AADHAR_ID']:
-                raise forms.ValidationError('Entered Aadhaar ID does not matched with Aadhaar associalted to this Bhamashah Card')
-        else:
-            raise forms.ValidationError(
-                'Unknown Error Occured!')
+        # if data is not None and 'AADHAR_ID' in data:
+        #     if aadhaar != data['AADHAR_ID']:
+        #         raise forms.ValidationError('Entered Aadhaar ID does not matched with Aadhaar associalted to this Bhamashah Card')
+        # else:
+        #     raise forms.ValidationError(
+        #         'Unknown Error Occured!')
 
         if email != confirm_email:
             raise forms.ValidationError("Email must match")
@@ -110,40 +108,9 @@ class UsersRegisterForm(forms.ModelForm):
         if username_qs.exists():
             raise forms.ValidationError("User with this username already registered")
 
-        if len(password) < 8:  # you can add more validations for password
+        if len(password) < 8:
             raise forms.ValidationError("Password must be greater than 8 characters")
 
         return super(UsersRegisterForm, self).clean(*args, **keyargs)
-
-
-#
-# class UserRegForm1(forms.Form):
-#     bhamashah_family_id = forms.CharField(max_length=7)
-#     aadhaar_id = forms.CharField(max_length=12)
-#
-#     def __init__(self, *args, **kwargs):
-#         super(UserRegForm1, self).__init__(*args, **kwargs)
-#         self.fields['bhamashah_family_id'].widget.attrs.update({
-#             'class': 'form-control',
-#             "name": "bhamashah_family_id"})
-#         self.fields['aadhaar_id'].widget.attrs.update({
-#             'class': 'form-control',
-#             "name": "aadhaar_id"})
-#
-#     def clean(self):
-#         bhamashah_family_id = self.cleaned_data.get('bhamashah_family_id')
-#         aadhaar_id = self.cleaned_data.get('aadhaar_id')
-#
-#         data = b(bhamashah_family_id)
-#         print(data)
-#
-#         if 'AADHAR_ID' in data:
-#             if aadhaar_id != data['AADHAR_ID']:
-#                 raise forms.ValidationError('Entered Aadhaar ID does not matched with Aadhaar associalted to this Bhamashah Card')
-#         else:
-#             raise forms.ValidationError(
-#                 'Unknown Error Occured!')
-#
-
 
 

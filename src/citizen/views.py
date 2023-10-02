@@ -146,7 +146,6 @@ def create_cyber_case(request):
 
 def register_view(request):
     form = UsersRegisterForm(request.POST or None)
-    print(form)
     if form.is_valid():
         print('form validated successfully')
         user = form.save()
@@ -154,6 +153,7 @@ def register_view(request):
         password = form.cleaned_data.get("password")
         user.set_password(password)
         user.save()
+        print (username)
         new_user = authenticate(username=username, password=password)
         login(request, new_user)
         return redirect("/citizen/dashboard")
