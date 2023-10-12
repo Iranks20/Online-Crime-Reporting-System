@@ -1,6 +1,5 @@
 {% extends "police/base_site.html" %}
 {% block title %} Login {% endblock title %}
-{% load crispy_forms_tags %}
 
 
 {% block stylesheets %}
@@ -25,7 +24,7 @@
           <h1 style="margin-top:-25px;">Upload Evidence</h1></section>
 
           <form method = "POST" enctype="multipart/form-data">{% csrf_token %}
-            {{form | crispy }}
+            {{form.as_p}}
             <input type = "submit" value = "Submit">
           </form>
               <div>

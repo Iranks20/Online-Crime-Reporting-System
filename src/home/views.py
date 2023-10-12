@@ -24,7 +24,8 @@ def gen_uname_pass():
 
 def upload_evidence(request,id=None):
     tip = get_object_or_404(AnonymousTip,pk=id)
-    if not request.user.is_authenticated():
+    # if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         raise Http404
 
     username = password = None

@@ -43,7 +43,7 @@
     {% endblock head %}
   </head>
  
- {% ifequal request.user|to_class_name "Police" %}
+  {% if request.user|to_class_name == "Police" %}
              
   <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -106,7 +106,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-{% endifequal %}
+{% endif %}
 
   <body class="{% block body_class %}nav-md {% endblock body_class %}">
     {% block body %}
@@ -115,12 +115,12 @@
 
           {% block sidebar %}
             <div class="col-md-3 left_col {% block sidebar_class %} {% endblock sidebar_class %}">
-              {% ifequal request.user|to_class_name "Police" %}
+              {% if request.user|to_class_name == "Police" %}
               {% include "police/sidebar.html" %}
               {% else %}
               {% include "citizen/sidebar.html" %}
               
-              {% endifequal %}
+              {% endif %}
             </div>
           {% endblock sidebar %}
 
